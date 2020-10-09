@@ -1,2 +1,4 @@
 # muzigen.net
-# muzigen.net
+
+* angular cli
+* ng serve
