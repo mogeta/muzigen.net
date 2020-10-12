@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "browser-sync": "browser-sync start --config bs-config.js"
   },
   "private": true,
   "dependencies": {
@@ -30,8 +31,10 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
+    "browser-sync": "^2.26.12",
     "bulma": "^0.9.1",
     "codelyzer": "^6.0.0",
+    "connect-history-api-fallback": "^1.6.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
