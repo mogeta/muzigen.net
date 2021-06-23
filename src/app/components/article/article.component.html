@@ -1,4 +1,16 @@
 <p>article works!</p>
-{{ (item | async)?.title }}
-{{ (item | async)?.content }}
-{{ (item | async)?. created_date }}
+<div>
+  {{ (item | async)?.title }}
+</div>
+
+<div>
+  <markdown [data]="(item | async)?.content" ngPreserveWhitespaces></markdown>
+</div>
+
+<div>
+  {{ (item | async)?.title }}
+</div>
+
+<markdown ngPreserveWhitespaces>
+  {{(item | async)?.content}}
+</markdown>
