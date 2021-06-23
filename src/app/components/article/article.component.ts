@@ -22,7 +22,7 @@ export class ArticleComponent implements OnInit {
   item: Observable<Item>;
 
   constructor(private firestore: AngularFirestore, private route: ActivatedRoute) {
-    const articleID = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    const articleID = this.route.snapshot.paramMap.get('id');
     this.articleDoc = firestore.doc<Item>(`blog_contents/${articleID}`);
     this.item = this.articleDoc.valueChanges();
   }
