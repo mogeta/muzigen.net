@@ -9,6 +9,7 @@ export interface Item {
   title: string;
   content: string;
   tag: string;
+  content_url: string;
   created_date: firebase.firestore.Timestamp;
 }
 
