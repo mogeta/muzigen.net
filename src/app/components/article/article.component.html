@@ -24,15 +24,16 @@
 </section>
 
 <div class="container">
+  <p class="title is-align-content-center">{{ (item | async)?.title }}</p>
+  <div>
+    {{ (item | async)?.created_date.toDate() | date:"yy/MM/dd HH:mm" }}
+  </div>
   <div class="tile is-ancestor">
     <div class="tile">
     </div>
     <div class="tile is-parent is-8">
       <div class="tile is-child box">
-        <p class="title">{{ (item | async)?.title }}</p>
-        <div>
-          {{ (item | async)?.created_date.toDate() | date:"yy/MM/dd HH:mm" }}
-        </div>
+
         <div class="content is-medium">
 
           <markdown [data]="(item | async)?.content" ngPreserveWhitespaces></markdown>
