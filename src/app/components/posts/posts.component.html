@@ -1,4 +1,9 @@
 <p>posts works!</p>
 <ng-container *ngFor="let item of items|async">
-  {{item.title}}
+  <div>
+    <a routerLink="/blog/{{item.id}}">
+      {{item.title}}
+    </a>
+  </div>
+  <hr />
 </ng-container>

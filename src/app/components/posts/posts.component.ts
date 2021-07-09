@@ -8,6 +8,9 @@ export interface Item {
   title: string;
   content: string;
   tag: string;
+  content_url: string;
+  markdown_url: string;
+  update_date: firebase.firestore.Timestamp;
   created_date: firebase.firestore.Timestamp;
 }
 

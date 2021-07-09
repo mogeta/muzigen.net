@@ -8,6 +8,7 @@ import { ArticleComponent } from './components/article/article.component';
 import {AngularFireModule} from '@angular/fire';
 import {MarkdownModule} from 'ngx-markdown';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {PostsComponent} from './components/posts/posts.component';
 declare var firebase: any;  // add
 
 @NgModule({
@@ -15,6 +16,7 @@ declare var firebase: any;  // add
     AppComponent,
     HomeComponent,
     ArticleComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
