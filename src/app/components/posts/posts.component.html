@@ -1,9 +1,32 @@
-<p>posts works!</p>
+<div class="container">
 <ng-container *ngFor="let item of items|async">
-  <div>
-    <a routerLink="/blog/{{item.id}}">
-      {{item.title}}
-    </a>
+<!--  <div>-->
+<!--    <a routerLink="/blog/{{item.id}}">-->
+<!--      {{item.title}}-->
+<!--    </a>-->
+<!--  </div>-->
+<!--  <hr />-->
+
+  <div class="tile is-ancestor">
+    <div class="tile">
+    </div>
+    <div class="tile is-parent is-8">
+      <div class="tile is-child box">
+
+        <div class="content is-medium">
+          <a routerLink="/blog/{{item.id}}">
+          <p class="title is-align-content-center">{{ item.title }}</p>
+          </a>
+          <div>
+            {{ item.created_date.toDate() | date:"yy/MM/dd HH:mm" }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile"></div>
+
   </div>
-  <hr />
 </ng-container>
+
+</div>
