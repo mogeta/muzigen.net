@@ -25,7 +25,7 @@ export class PostsComponent implements OnInit {
   items: Observable<Item[]>;
 
   constructor(private firestore: AngularFirestore) {
-    this.itemsCollection = firestore.collection<Item>('blog_contents');
+    this.itemsCollection = firestore.collection<Item>('blog_contents', ref => ref.orderBy('update_date', 'desc'));
     this.items = this.itemsCollection.valueChanges();
   }
 
