@@ -1,32 +1,65 @@
 <div class="container">
-<ng-container *ngFor="let item of items|async">
-<!--  <div>-->
-<!--    <a routerLink="/blog/{{item.id}}">-->
-<!--      {{item.title}}-->
-<!--    </a>-->
-<!--  </div>-->
-<!--  <hr />-->
-
-  <div class="tile is-ancestor">
-    <div class="tile">
-    </div>
-    <div class="tile is-parent is-8">
-      <div class="tile is-child box">
-
-        <div class="content is-medium">
-          <a routerLink="/blog/{{item.id}}">
-          <p class="title is-align-content-center">{{ item.title }}</p>
-          </a>
-          <div>
-            {{ item.created_date.toDate() | date:"yy/MM/dd HH:mm" }}
+  <div class="columns is-multiline">
+    <ng-container *ngFor="let item of items|async">
+      <!--  <div>-->
+      <!--    <a routerLink="/blog/{{item.id}}">-->
+      <!--      {{item.title}}-->
+      <!--    </a>-->
+      <!--  </div>-->
+      <!--  <hr />-->
+      <div class="column is-one-third">
+        <a routerLink="/blog/{{item.id}}">
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <p class="title is-align-content-center">{{ item.title }}</p>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="content">
+                {{ (item.content.length > 6) ? (item.content | slice:0:100) + '..' : (item.content) }}
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
-    </div>
 
-    <div class="tile"></div>
 
+      <!--  <div class="tile is-ancestor">-->
+      <!--    <div class="tile">-->
+      <!--    </div>-->
+      <!--    <div class="tile is-parent is-8">-->
+      <!--      <div class="tile is-child box">-->
+
+      <!--        <div class="content is-medium">-->
+      <!--          <a routerLink="/blog/{{item.id}}">-->
+      <!--          <p class="title is-align-content-center">{{ item.title }}</p>-->
+      <!--          </a>-->
+      <!--          <div>-->
+      <!--            {{ item.created_date.toDate() | date:"yy/MM/dd HH:mm" }}-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--    </div>-->
+
+      <!--    <div class="tile"></div>-->
+      <!--  </div>-->
+
+    </ng-container>
   </div>
-</ng-container>
 
+
+  <nav class="pagination is-medium" role="navigation" aria-label="pagination">
+    <a class="pagination-previous">Previous</a>
+    <a class="pagination-next">Next page</a>
+    <ul class="pagination-list">
+      <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+      <li><span class="pagination-ellipsis">&hellip;</span></li>
+      <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+      <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
+      <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+      <li><span class="pagination-ellipsis">&hellip;</span></li>
+      <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+    </ul>
+  </nav>
 </div>
