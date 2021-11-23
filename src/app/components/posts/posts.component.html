@@ -18,14 +18,21 @@
       <div class="column is-one-third">
         <a routerLink="/blog/{{item.id}}">
           <div class="card">
-            <div class="card-content">
+            <div class="card-content has-background-primary">
               <div class="content">
-                <p class="title is-align-content-center">{{ item.title }}</p>
+                <p class="title has-text-primary-light">{{ item.title }}</p>
               </div>
             </div>
             <div class="card-content">
               <div class="content">
                 {{ (item.content.length > 6) ? (item.content | slice:0:100) + '..' : (item.content) }}
+              </div>
+            </div>
+
+            <hr />
+            <div class="card-content">
+              <div class="content has-text-right">
+                {{item.update_date.toDate() | date:"yyyy/MM/dd HH:mm"}}
               </div>
             </div>
           </div>

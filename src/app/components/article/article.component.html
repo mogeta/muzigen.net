@@ -13,7 +13,7 @@
   <div class="box is-centered">
     <p class="title has-text-centered">{{ (item | async)?.title }}</p>
     <div>
-      {{ (item | async)?.created_date.toDate() | date:"yy/MM/dd HH:mm" }}
+      {{ (item | async)?.created_date.toDate() | date:"yyyy/MM/dd HH:mm" }}
     </div>
   </div>
 
