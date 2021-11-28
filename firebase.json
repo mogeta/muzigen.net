@@ -25,6 +25,10 @@
     }],
     "rewrites": [
       {
+        "source": "/brave-rewards-verification.txt",
+        "destination": "/brave-rewards-verification.txt"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
