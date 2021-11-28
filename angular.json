@@ -27,7 +27,7 @@
               "src/assets",
               "src/robots.txt",
               "src/ads.txt",
-              "brave-rewards-verification.txt"
+              "src/brave-rewards-verification.txt"
             ],
             "styles": [
               "src/styles.sass"
