@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: muzigen.net
+Token: f16bd7f3330b009ab93199d996dc39aea7fb571284c1b33e59aa25d4ba7cc232
