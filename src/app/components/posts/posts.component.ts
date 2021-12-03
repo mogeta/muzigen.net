@@ -1,7 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
-import firebase from 'firebase';
+import {
+  Firestore,
+  collection,
+  query,
+  orderBy,
+  getDocs,
+} from '@angular/fire/firestore';
+import firebase from 'firebase/compat';
 
 export interface Item {
   id: string;
@@ -20,16 +25,17 @@ export interface Item {
   styleUrls: ['./posts.component.sass']
 })
 export class PostsComponent implements OnInit {
+  items: Item[] = [];
 
-  itemsCollection: AngularFirestoreCollection<Item>;
-  items: Observable<Item[]>;
-
-  constructor(private firestore: AngularFirestore) {
-    this.itemsCollection = firestore.collection<Item>('blog_contents', ref => ref.orderBy('update_date', 'desc'));
-    this.items = this.itemsCollection.valueChanges();
+  constructor(private firestore: Firestore) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const c = collection(this.firestore, 'blog_contents');
+    const q = query(c, orderBy('update_date', 'desc'));
+    const i = await getDocs(q);
+    i.forEach(v => {
+      this.items.push(v.data() as Item);
+    });
   }
-
 }

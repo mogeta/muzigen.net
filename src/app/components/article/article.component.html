@@ -6,14 +6,15 @@
       <li><a href="/"></a></li>
       <li><a routerLink="/">Home</a></li>
       <li><a routerLink="/blog">Blog</a></li>
-      <li class="is-active"><a href="#" aria-current="page">{{ (item | async)?.title }}</a></li>
+      <li class="is-active"><a href="#" aria-current="page">{{ article.title }}</a></li>
     </ul>
   </nav>
 
   <div class="box is-centered">
-    <p class="title has-text-centered">{{ (item | async)?.title }}</p>
+    <p class="title has-text-centered">{{ article.title }}</p>
     <div>
-      {{ (item | async)?.created_date.toDate() | date:"yyyy/MM/dd HH:mm" }}
+            {{ article?.toLocaleString  }}
+      <!--      {{ article?.created_date.toDate() | date:"yyyy/MM/dd HH:mm" }}-->
     </div>
   </div>
 
@@ -25,7 +26,7 @@
 
         <div class="content is-medium">
 
-          <markdown [data]="(item | async)?.content" ngPreserveWhitespaces></markdown>
+          <markdown [data]=" article.content " ngPreserveWhitespaces></markdown>
         </div>
       </div>
     </div>
