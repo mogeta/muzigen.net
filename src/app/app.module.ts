@@ -11,6 +11,7 @@ import {PostsComponent} from './components/posts/posts.component';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {CommonModule} from '@angular/common';
+import {getAnalytics, provideAnalytics} from '@angular/fire/analytics';
 // declare var firebase: any;  // add
 const firebaseConfig = {
   apiKey: 'AIzaSyBzo-nTtnYzydswTuDmiizwgLn5GRIrz9Q',
@@ -36,6 +37,7 @@ const firebaseConfig = {
     AppRoutingModule,
     HttpClientModule,
     MarkdownModule.forRoot({loader: HttpClient}),
+    provideAnalytics(() => getAnalytics()),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
   ],
