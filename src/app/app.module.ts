@@ -8,11 +8,29 @@ import {ArticleComponent} from './components/article/article.component';
 import {MarkdownModule} from 'ngx-markdown';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {PostsComponent} from './components/posts/posts.component';
-import {getApp, initializeApp, provideFirebaseApp} from '@angular/fire/app';
+import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {CommonModule} from '@angular/common';
 import {getAnalytics, provideAnalytics} from '@angular/fire/analytics';
+import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
+import {environment} from '../environments/environment';
 
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+    domain: environment.domain
+  },
+  palette: {
+    popup: {
+      background: '#000'
+    },
+    button: {
+      background: '#f1d600'
+    }
+  },
+  theme: 'edgeless',
+  type: 'opt-out'
+};
 const firebaseConfig = {
   apiKey: 'AIzaSyBzo-nTtnYzydswTuDmiizwgLn5GRIrz9Q',
   authDomain: 'muzigen-net.firebaseapp.com',
@@ -36,10 +54,12 @@ const firebaseConfig = {
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
+    NgcCookieConsentModule.forRoot(cookieConfig),
     MarkdownModule.forRoot({loader: HttpClient}),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
-    provideAnalytics(() => getAnalytics()),
+    provideAnalytics(() => getAnalytics())
+    // provideAnalytics(() => initializeAnalytics( initializeApp(firebaseConfig))),
   ],
   providers: [],
   bootstrap: [AppComponent]

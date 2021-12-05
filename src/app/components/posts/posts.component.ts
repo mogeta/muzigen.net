@@ -7,6 +7,7 @@ import {
   getDocs,
 } from '@angular/fire/firestore';
 import firebase from 'firebase/compat';
+import {Analytics, logEvent} from '@angular/fire/analytics';
 
 export interface Item {
   id: string;
@@ -27,7 +28,8 @@ export interface Item {
 export class PostsComponent implements OnInit {
   items: Item[] = [];
 
-  constructor(private firestore: Firestore) {
+  constructor(private firestore: Firestore, private a: Analytics) {
+    // logEvent(a, 'posts');
   }
 
   async ngOnInit(): Promise<void> {

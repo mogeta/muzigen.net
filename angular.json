@@ -30,9 +30,11 @@
               "src/.well-known/brave-rewards-verification.txt"
             ],
             "styles": [
-              "src/styles.sass"
+              "src/styles.sass",
+              "node_modules/cookieconsent/build/cookieconsent.min.css"
             ],
-            "scripts": ["node_modules/marked/lib/marked.js"],
+            "scripts": ["node_modules/marked/lib/marked.js",
+              "node_modules/cookieconsent/build/cookieconsent.min.js"],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -101,9 +103,11 @@
             ],
             "styles": [
               "src/styles.sass",
-              "node_modules/prismjs/themes/prism-okaidia.css"
+              "node_modules/prismjs/themes/prism-okaidia.css",
+              "node_modules/cookieconsent/build/cookieconsent.min.css"
             ],
             "scripts": ["node_modules/marked/lib/marked.js",
+              "node_modules/cookieconsent/build/cookieconsent.min.js",
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-csharp.min.js",
               "node_modules/prismjs/components/prism-css.min.js"]
