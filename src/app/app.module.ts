@@ -14,6 +14,7 @@ import {CommonModule} from '@angular/common';
 import {getAnalytics, provideAnalytics} from '@angular/fire/analytics';
 import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
 import {environment} from '../environments/environment';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -58,7 +59,8 @@ const firebaseConfig = {
     MarkdownModule.forRoot({loader: HttpClient}),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
-    provideAnalytics(() => getAnalytics())
+    provideAnalytics(() => getAnalytics()),
+    ScullyLibModule
     // provideAnalytics(() => initializeAnalytics( initializeApp(firebaseConfig))),
   ],
   providers: [],
