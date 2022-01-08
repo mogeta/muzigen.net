@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {doc, Firestore, getDoc} from '@angular/fire/firestore';
 import firebase from 'firebase/compat';
 import Timestamp = firebase.firestore.Timestamp;
+import {IdleMonitorService} from "@scullyio/ng-lib";
 
 export class Item {
   id: string;
@@ -29,7 +30,7 @@ export class ArticleComponent implements OnInit {
   storageUrl = 'https://firebasestorage.googleapis.com/v0/b/muzigen-net.appspot.com/o/markdown%2F';
   query = '?alt=media';
 
-  constructor(private fs: Firestore, private route: ActivatedRoute) {
+  constructor(private fs: Firestore, private route: ActivatedRoute, private ims: IdleMonitorService) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -38,6 +39,7 @@ export class ArticleComponent implements OnInit {
     const resut = await getDoc(ref);
     this.article = resut.data() as Item;
     this.article.toLocaleString = this.article.created_date.toDate().toLocaleString();
+    await this.ims.fireManualMyAppReadyEvent();
   }
 
 }

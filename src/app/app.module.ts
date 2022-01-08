@@ -60,7 +60,12 @@ const firebaseConfig = {
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideAnalytics(() => getAnalytics()),
-    ScullyLibModule
+    // ScullyLibModule
+    ScullyLibModule.forRoot({
+      useTransferState: true,
+      alwaysMonitor: false,
+      manualIdle: true,
+    })
     // provideAnalytics(() => initializeAnalytics( initializeApp(firebaseConfig))),
   ],
   providers: [],
