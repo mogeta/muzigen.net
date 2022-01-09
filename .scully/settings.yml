@@ -1,0 +1,11 @@
+identifier: k3x3v9odwff8x5x5
+appPort: 1864
+staticPort: 1668
+reloadPort: 2667
+hostName: localhost
+projectName: muzigen
+homeFolder: /Users/muzi/WebstormProjects/muzigen.net
+distFolder: dist/browser
+outDir: /Users/muzi/WebstormProjects/muzigen.net/dist/static
+handle404: ''
+allowErrorCollect: true

@@ -46,5 +46,10 @@ testem.log
 Thumbs.db
 
 .firebase
-firebase-debug.log
 .angular
+
+# log
+firebase-debug.log
+scully.log
+firestore-debug.log
+ui-debug.log
