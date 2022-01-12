@@ -19,8 +19,8 @@ export const config: ScullyConfig = {
       type: 'json',
       // Add the following to your route
       manualIdleCheck: true,
-      userId: {
-        url: 'https://us-central1-muzigen-net.cloudfunctions.net/blogs',
+      id: {
+        url: 'http://us-central1-muzigen-net.cloudfunctions.net/blogs',
         property: 'id'
       }
     }

@@ -20,11 +20,17 @@ admin.initializeApp();
 //
 export const blogs = functions.https.onRequest(async (request, response) => {
   // functions.logger.info("Hello logs!", {structuredData: true});
+
+  // response.set("Access-Control-Allow-Headers", "*");
+  // response.set("Access-Control-Allow-Origin", "*");
+  // response.set("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST");
+
   const querySnapshot = await admin.firestore().collection("blog_contents")
       .select("id")
       .orderBy("update_date", "desc").get();
   const records = querySnapshot.docs.map((elem) => elem.data());
 
   // await admin.firestore().collection('messages');
+  response.set("Content-Type", "application/json");
   response.send(JSON.stringify(records));
 });
