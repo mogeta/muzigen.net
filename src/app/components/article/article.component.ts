@@ -58,9 +58,8 @@ export class ArticleComponent implements OnInit {
   private updateMeta(title: string, description: string, ogpImage: string): void {
     this.title.setTitle(title);
     this.meta.updateTag({name: 'description', content: description});
-    // this.meta.updateTag({ name: 'keywords', content: keywords })
-    // this.meta.updateTag({ name: 'twitter:card', content: twittercard })
-    // this.meta.updateTag({ name: 'twitter:site', content: twittersite })
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+    this.meta.updateTag({ name: 'twitter:site', content: '@mogetta' });
     this.meta.updateTag({
       property: 'og:url',
       content: `https://${environment.domain}/${this.route.snapshot.url.join('/')}`
