@@ -3,13 +3,16 @@ import {ActivatedRoute} from '@angular/router';
 import {doc, Firestore, getDoc} from '@angular/fire/firestore';
 import firebase from 'firebase/compat';
 import Timestamp = firebase.firestore.Timestamp;
-import {IdleMonitorService} from "@scullyio/ng-lib";
-import {Meta, Title} from "@angular/platform-browser";
-import {environment} from "../../../environments/environment";
+import {IdleMonitorService} from '@scullyio/ng-lib';
+import {Meta, Title} from '@angular/platform-browser';
+import {environment} from '../../../environments/environment';
 
 export class Item {
   id: string;
   title: string;
+  description: string;
+  // tslint:disable-next-line:variable-name
+  ogp_image: string;
   content: string;
   tag: string;
   // tslint:disable-next-line:variable-name
@@ -27,7 +30,7 @@ export class Item {
   styleUrls: ['./article.component.sass']
 })
 export class ArticleComponent implements OnInit {
-  article: Item = new Item();
+  article;
   markdownUrl = '';
   storageUrl = 'https://firebasestorage.googleapis.com/v0/b/muzigen-net.appspot.com/o/markdown%2F';
   query = '?alt=media';
@@ -40,25 +43,30 @@ export class ArticleComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    this.article = {title: ''};
     const articleID = this.route.snapshot.paramMap.get('id');
     const ref = doc(this.fs, `blog_contents/${articleID}`);
     const resut = await getDoc(ref);
-    this.article = resut.data() as Item;
+    this.article = resut.data();
     this.article.toLocaleString = this.article.created_date.toDate().toLocaleString();
-    this.updateMeta(this.article.title);
+    const description = this.article.hasOwnProperty('description') ? this.article.description : '';
+    const ogpImage = this.article.hasOwnProperty('ogp_image') ? this.article.ogp_image : '';
+    this.updateMeta(this.article.title, description, ogpImage);
     await this.ims.fireManualMyAppReadyEvent();
   }
 
-  private updateMeta(title: string): void {
+  private updateMeta(title: string, description: string, ogpImage: string): void {
     this.title.setTitle(title);
-    console.log();
-    // this.meta.updateTag({ name: 'description', content: desc })
+    this.meta.updateTag({name: 'description', content: description});
     // this.meta.updateTag({ name: 'keywords', content: keywords })
     // this.meta.updateTag({ name: 'twitter:card', content: twittercard })
     // this.meta.updateTag({ name: 'twitter:site', content: twittersite })
-    this.meta.updateTag({ property: 'og:url', content: `https://${environment.domain}/${this.route.snapshot.url.join('/')}`});
-    // this.meta.updateTag({ property: 'og:title', content: title })
-    // this.meta.updateTag({ property: 'og:description', content: desc })
-    // this.meta.updateTag({ property: 'og:image', content: twitterimage })
+    this.meta.updateTag({
+      property: 'og:url',
+      content: `https://${environment.domain}/${this.route.snapshot.url.join('/')}`
+    });
+    this.meta.updateTag({property: 'og:title', content: title});
+    this.meta.updateTag({property: 'og:description', content: description});
+    this.meta.updateTag({property: 'og:image', content: ogpImage});
   }
 }
