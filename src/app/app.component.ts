@@ -7,6 +7,7 @@ import {
   NgcStatusChangeEvent
 } from 'ngx-cookieconsent';
 import {Analytics} from '@angular/fire/analytics';
+import {isScullyRunning} from "@scullyio/ng-lib";
 
 @Component({
   selector: 'app-root',
@@ -28,8 +29,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
-    // console.log(this.ccService.hasAnswered());
+    if (isScullyRunning()){
+      return;
+    }
     this.analytics.app.automaticDataCollectionEnabled = this.ccService.hasConsented();
     this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
       () => {
@@ -63,6 +65,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (isScullyRunning()){
+      return;
+    }
     this.popupOpenSubscription.unsubscribe();
     this.popupCloseSubscription.unsubscribe();
     this.initializeSubscription.unsubscribe();
