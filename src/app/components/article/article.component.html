@@ -1,14 +1,14 @@
 
-
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><a title="blank" routerLink="/"></a></li>
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/blog">Blog</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{{ article.title }}</a></li>
+  </ul>
+</nav>
 <div class="container">
-  <nav class="breadcrumb" aria-label="breadcrumbs">
-    <ul>
-      <li><a href="/"></a></li>
-      <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/blog">Blog</a></li>
-      <li class="is-active"><a href="#" aria-current="page">{{ article.title }}</a></li>
-    </ul>
-  </nav>
+
 
   <div class="box is-centered">
     <p class="title has-text-centered">{{ article.title }}</p>
