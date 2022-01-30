@@ -12,11 +12,11 @@
   <div class="box is-centered">
     <p class="title has-text-centered">{{ (article|async)?.title}}</p>
     <div>
-      {{ (article|async)?.update_date.toDate() | date:"yyyy/MM/dd HH:mm"}}
+      更新日:{{ (article|async)?.update_date.toDate() | date:"yyyy/MM/dd HH:mm"}}
       <!--      {{ article?.created_date.toDate() | date:"yyyy/MM/dd HH:mm" }}-->
     </div>
     <div>
-      {{ (article|async)?.created_date.toDate() | date:"yyyy/MM/dd HH:mm"}}
+      作成日:{{ (article|async)?.created_date.toDate() | date:"yyyy/MM/dd HH:mm"}}
       <!--      {{ article?.created_date.toDate() | date:"yyyy/MM/dd HH:mm" }}-->
     </div>
     <div class="title has-text-right">
