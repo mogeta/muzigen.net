@@ -5,19 +5,22 @@ import {
   query,
   orderBy,
   getDocs,
+  Timestamp,
 } from '@angular/fire/firestore';
-import firebase from 'firebase/compat';
 import {Analytics, logEvent} from '@angular/fire/analytics';
 
 export interface Item {
-  id: string;
-  title: string;
-  content: string;
-  tag: string;
-  content_url: string;
-  markdown_url: string;
-  update_date: firebase.firestore.Timestamp;
-  created_date: firebase.firestore.Timestamp;
+ id: string;
+ title: string;
+ description: string;
+ ogp_image: string;
+ content: string;
+ tag: string;
+ content_url: string;
+ markdown_url: string;
+ update_date: Timestamp;
+ created_date: Timestamp;
+ publish: boolean;
 }
 
 @Component({
