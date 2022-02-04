@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {doc, Firestore, getDoc, Timestamp} from '@angular/fire/firestore';
+import {collection, doc, Firestore, getDoc, getDocs, limit, orderBy, query, Timestamp} from '@angular/fire/firestore';
 import {IdleMonitorService} from '@scullyio/ng-lib';
 import {Meta, Title} from '@angular/platform-browser';
 import {environment} from '../../../environments/environment';
@@ -14,10 +14,6 @@ import {environment} from '../../../environments/environment';
 export class ArticleComponent implements OnInit {
   article: Promise<Item>|null = null;
 
-  // markdownUrl = '';
-  // storageUrl = 'https://firebasestorage.googleapis.com/v0/b/muzigen-net.appspot.com/o/markdown%2F';
-  // query = '?alt=media';
-
   constructor(private fs: Firestore,
               private route: ActivatedRoute,
               private title: Title,
@@ -28,6 +24,21 @@ export class ArticleComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     // this.article = {title: '',};
     const articleID = this.route.snapshot.paramMap.get('id');
+
+    // has articleID
+    if (articleID === null) {
+      this.article = new Promise<Item>(async (resolve, reject) => {
+        const c = collection(this.fs, 'blog_contents');
+        const q = query(c, orderBy('update_date', 'desc'), limit(1));
+        const i = getDocs(q);
+        (await i).forEach(v => {
+          return resolve(v.data()as Item);
+        });
+      });
+      await this.ims.fireManualMyAppReadyEvent();
+      return;
+    }
+
     const ref = doc(this.fs, `blog_contents/${articleID}`).withConverter(ItemConverter);
 
     this.article = new Promise<Item>(async (resolve, reject) => {
