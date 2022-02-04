@@ -1,17 +1,16 @@
-<div class="content">
-  <main>
-    <!--  <nav class="navbar" role="navigation" aria-label="main navigation">-->
-    <!--    <div class="navbar-brand">-->
-    <!--      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">-->
-    <!--        <span aria-hidden="true"></span>-->
-    <!--        <span aria-hidden="true"></span>-->
-    <!--        <span aria-hidden="true"></span>-->
-    <!--      </a>-->
-    <!--    </div>-->
-    <!--  </nav>-->
 
-    <section class="hero is-small is-primary">
-      <div class="hero-body">
+<!--      <nav class="navbar" role="navigation" aria-label="main navigation">-->
+<!--        <div class="navbar-brand">-->
+<!--          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">-->
+<!--            <span aria-hidden="true"></span>-->
+<!--            <span aria-hidden="true"></span>-->
+<!--            <span aria-hidden="true"></span>-->
+<!--          </a>-->
+<!--        </div>-->
+<!--      </nav>-->
+
+    <header class="hero is-primary header-outer">
+      <div class="hero-body header-inner">
         <p class="title has-text-dark">
           muzigen.net
         </p>
@@ -19,16 +18,19 @@
           雑談するか技術ログ残すところ
         </p>
       </div>
-    </section>
-    <router-outlet></router-outlet>
-  </main>
-
-
-</div>
+    </header>
+<main>
+  <div class="content">
+      <router-outlet></router-outlet>
+  </div>
+</main>
 <footer class="footer">
   <div class="has-text-centered">
     <p>
       <a href="https://muzigen.net">muzigen.net</a>
     </p>
+  </div>
+  <div class="has-text-centered">
+    <a routerLink="/blog">Blog</a>
   </div>
 </footer>
