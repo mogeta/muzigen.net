@@ -37,7 +37,7 @@ export class PostsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const c = collection(this.firestore, 'blog_contents');
-    const q = query(c, orderBy('update_date', 'desc'));
+    const q = query(c, orderBy('created_date', 'desc'));
     const i = await getDocs(q);
     i.forEach(v => {
       this.items.push(v.data() as Item);

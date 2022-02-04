@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'blog', component: PostsComponent },
   { path: 'blog/:id', component: ArticleComponent },
+  { path: 'labo', loadChildren: () => import('./labo/labo.module').then(m => m.LaboModule) },
 ];
 
 @NgModule({

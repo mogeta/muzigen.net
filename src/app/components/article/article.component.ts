@@ -29,7 +29,7 @@ export class ArticleComponent implements OnInit {
     if (articleID === null) {
       this.article = new Promise<Item>(async (resolve, reject) => {
         const c = collection(this.fs, 'blog_contents');
-        const q = query(c, orderBy('update_date', 'desc'), limit(1));
+        const q = query(c, orderBy('created_date', 'desc'), limit(1));
         const i = getDocs(q);
         (await i).forEach(v => {
           return resolve(v.data()as Item);
