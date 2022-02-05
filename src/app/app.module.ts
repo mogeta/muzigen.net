@@ -15,6 +15,8 @@ import {getAnalytics, provideAnalytics} from '@angular/fire/analytics';
 import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
 import {environment} from '../environments/environment';
 import { ScullyLibModule } from '@scullyio/ng-lib';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { ArticlePageComponent } from './components/page/article-page/article-page.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -48,7 +50,9 @@ const firebaseConfig = {
     AppComponent,
     HomeComponent,
     ArticleComponent,
-    PostsComponent
+    PostsComponent,
+    BreadcrumbComponent,
+    ArticlePageComponent
   ],
   imports: [
     BrowserModule,
