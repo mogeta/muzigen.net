@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {collection, doc, Firestore, getDoc, getDocs, limit, orderBy, query, Timestamp} from '@angular/fire/firestore';
 import {IdleMonitorService} from '@scullyio/ng-lib';
-import {Meta, Title} from '@angular/platform-browser';
+import {Meta, SafeHtml, Title} from '@angular/platform-browser';
 import {environment} from '../../../environments/environment';
-
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-article',
@@ -18,7 +18,8 @@ export class ArticleComponent implements OnInit {
               private route: ActivatedRoute,
               private title: Title,
               private ims: IdleMonitorService,
-              private meta: Meta) {
+              private meta: Meta,
+              private domSanitizer: DomSanitizer) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -49,6 +50,11 @@ export class ArticleComponent implements OnInit {
       const ogpImage = data.ogp_image;
       this.updateMeta(data.title, description, ogpImage);
 
+      for (const el of data.elements){
+        console.log(el);
+        el.safeHTML = this.domSanitizer.bypassSecurityTrustHtml(el.source);
+      }
+
       resolve(data);
       await this.ims.fireManualMyAppReadyEvent();
     });
@@ -77,6 +83,10 @@ export class ArticleComponent implements OnInit {
     this.meta.updateTag({property: 'og:description', content: description});
     this.meta.updateTag({property: 'og:image', content: ogpImage});
   }
+
+  safeHTML(str: string): SafeHtml {
+    return this.domSanitizer.bypassSecurityTrustHtml(str);
+  }
 }
 
 export class Item {
@@ -92,10 +102,25 @@ export class Item {
     public update_date: Timestamp,
     public created_date: Timestamp,
     public publish: boolean,
+    public elements: Elements[],
+
   ) {
   }
 
-  tostring() {
+  tostring(): string {
+    return JSON.stringify(this);
+  }
+}
+
+export class Elements{
+  constructor(
+    public source: string,
+    public type: string,
+    public safeHTML: SafeHtml,
+  ) {
+  }
+
+  tostring(): string {
     return JSON.stringify(this);
   }
 }
@@ -115,6 +140,7 @@ const ItemConverter = {
       update_date: item.update_date,
       created_date: item.created_date,
       publish: item.publish,
+      elements: item.elements,
     };
   },
   fromFirestore: (snapshot, options) => {
@@ -131,6 +157,7 @@ const ItemConverter = {
       data.update_date,
       data.created_date,
       data.hasOwnProperty('publish') ? data.publish : true,
+      data.hasOwnProperty('elements') ? data.elements : [],
     );
   }
 };

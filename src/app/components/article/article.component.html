@@ -37,11 +37,18 @@
 
           <markdown [data]=" (article | async)?.content " ngPreserveWhitespaces></markdown>
         </div>
+
+        <!--追加-->
+        <div *ngFor="let element of (article | async)?.elements; let i = index" class="content is-medium">
+          <div *ngIf="element.type=='html'" [innerHTML]='element.safeHTML'></div>
+          <markdown class="content is-medium" *ngIf="element.type=='markdown'" [data]="element.source" ngPreserveWhitespaces></markdown>
+        </div>
+
       </div>
+
     </div>
-
-    <div class="tile"></div>
-
+    <div class="tile">
+    </div>
   </div>
 </div>
 
