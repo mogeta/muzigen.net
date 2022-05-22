@@ -9,7 +9,7 @@
 <div class="container">
 
 
-  <div class="box is-centered">
+  <div class=" is-centered">
     <p class="title has-text-centered">{{ (article|async)?.title}}</p>
     <div>
       更新日:{{ (article|async)?.update_date.toDate() | date:"yyyy/MM/dd HH:mm"}}
@@ -19,7 +19,7 @@
       作成日:{{ (article|async)?.created_date.toDate() | date:"yyyy/MM/dd HH:mm"}}
       <!--      {{ article?.created_date.toDate() | date:"yyyy/MM/dd HH:mm" }}-->
     </div>
-    <div class="title has-text-right">
+    <div class="title has-text-left">
       <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
          data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img
         src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加"
@@ -31,7 +31,7 @@
     <div class="tile">
     </div>
     <div class="tile is-parent is-8">
-      <div class="tile is-child box">
+      <div class="tile is-child">
 
         <div class="content is-medium">
 
