@@ -26,7 +26,7 @@ export class ArticleComponent implements OnInit {
     // this.article = {title: '',};
     const articleID = this.route.snapshot.paramMap.get('id');
 
-    // has articleID
+    // has not articleID
     if (articleID === null) {
       this.article = new Promise<Item>(async (resolve, reject) => {
         const c = collection(this.fs, 'blog_contents');
@@ -36,6 +36,10 @@ export class ArticleComponent implements OnInit {
           return resolve(v.data()as Item);
         });
       });
+      for (const el of (await this.article).elements){
+        console.log(el);
+        el.safeHTML = this.domSanitizer.bypassSecurityTrustHtml(el.source);
+      }
       await this.ims.fireManualMyAppReadyEvent();
       return;
     }
