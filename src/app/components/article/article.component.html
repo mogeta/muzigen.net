@@ -6,16 +6,16 @@
     <li class="is-active"><a href="#" aria-current="page">{{ (article | async)?.title}}</a></li>
   </ul>
 </nav>
-<div class="container">
+<div class="container box">
 
 
   <div class=" is-centered">
     <p class="title has-text-centered">{{ (article|async)?.title}}</p>
-    <div>
+    <div >
       更新日:{{ (article|async)?.update_date.toDate() | date:"yyyy/MM/dd HH:mm"}}
       <!--      {{ article?.created_date.toDate() | date:"yyyy/MM/dd HH:mm" }}-->
     </div>
-    <div>
+    <div class="block">
       作成日:{{ (article|async)?.created_date.toDate() | date:"yyyy/MM/dd HH:mm"}}
       <!--      {{ article?.created_date.toDate() | date:"yyyy/MM/dd HH:mm" }}-->
     </div>
@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <div class="tile is-ancestor">
+  <div class="tile is-ancestor card-content">
     <div class="tile">
     </div>
     <div class="tile is-parent is-8">
@@ -41,7 +41,8 @@
         <!--追加-->
         <div *ngFor="let element of (article | async)?.elements; let i = index" class="content is-medium">
           <div *ngIf="element.type=='html'" [innerHTML]='element.safeHTML'></div>
-          <markdown class="content is-medium" *ngIf="element.type=='markdown'" [data]="element.source" ngPreserveWhitespaces></markdown>
+          <markdown class="content is-medium" *ngIf="element.type=='markdown'" [data]="element.source"
+                    ngPreserveWhitespaces></markdown>
         </div>
 
       </div>
