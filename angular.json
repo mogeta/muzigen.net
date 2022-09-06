@@ -33,8 +33,10 @@
               "src/styles.sass",
               "node_modules/cookieconsent/build/cookieconsent.min.css"
             ],
-            "scripts": ["node_modules/marked/marked.min.js",
-              "node_modules/cookieconsent/build/cookieconsent.min.js"],
+            "scripts": [
+              "node_modules/marked/marked.min.js",
+              "node_modules/cookieconsent/build/cookieconsent.min.js"
+            ],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -106,23 +108,21 @@
               "node_modules/prismjs/themes/prism-okaidia.css",
               "node_modules/cookieconsent/build/cookieconsent.min.css"
             ],
-            "scripts": ["node_modules/marked/marked.min.js",
+            "scripts": [
+              "node_modules/marked/marked.min.js",
               "node_modules/cookieconsent/build/cookieconsent.min.js",
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-csharp.min.js",
-              "node_modules/prismjs/components/prism-css.min.js"]
+              "node_modules/prismjs/components/prism-css.min.js"
+            ]
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         },
@@ -143,6 +143,7 @@
   },
   "defaultProject": "muzigen",
   "cli": {
-    "analytics": "bb80818c-05dc-42dd-818b-e87d0513652f"
+    "analytics": "bb80818c-05dc-42dd-818b-e87d0513652f",
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }

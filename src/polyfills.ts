@@ -65,5 +65,5 @@ import 'zone.js';  // Included with Angular CLI.
 /***************************************************************************************************
 * SCULLY IMPORTS
 */
-// tslint:disable-next-line: align
+// eslint-disable-next-line @typescript-eslint/indent
 import 'zone.js/dist/task-tracking';
