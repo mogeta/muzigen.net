@@ -5,11 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './labo.component.html',
   styleUrls: ['./labo.component.sass']
 })
-export class LaboComponent implements OnInit {
+export class LaboComponent /*implements OnInit */{
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  // ngOnInit(): void {
+  // }
 
 }
