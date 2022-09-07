@@ -141,9 +141,10 @@
       }
     }
   },
-  "defaultProject": "muzigen",
   "cli": {
     "analytics": "bb80818c-05dc-42dd-818b-e87d0513652f",
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
