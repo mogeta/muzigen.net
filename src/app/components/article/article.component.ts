@@ -1,6 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {collection, doc, Firestore, getDoc, getDocs, limit, orderBy, query, Timestamp} from '@angular/fire/firestore';
+import {
+  collection,
+  doc,
+  Firestore,
+  getDoc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  Timestamp,
+  where
+} from '@angular/fire/firestore';
 import {IdleMonitorService} from '@scullyio/ng-lib';
 import {Meta, SafeHtml, Title} from '@angular/platform-browser';
 import {environment} from '../../../environments/environment';
@@ -30,7 +41,7 @@ export class ArticleComponent implements OnInit {
     if (articleID === null) {
       this.article = new Promise<Item>(async (resolve, reject) => {
         const c = collection(this.fs, 'blog_contents');
-        const q = query(c, orderBy('created_date', 'desc'), limit(1));
+        const q = query(c,where("publish", "==", true), orderBy('created_date', 'desc'), limit(1));
         const i = getDocs(q);
         (await i).forEach(v => {
           return resolve(v.data()as Item);

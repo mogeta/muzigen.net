@@ -5,7 +5,7 @@ import {
   query,
   orderBy,
   getDocs,
-  Timestamp,
+  Timestamp, where,
 } from '@angular/fire/firestore';
 import {Analytics, logEvent} from '@angular/fire/analytics';
 
@@ -37,7 +37,7 @@ export class PostsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const c = collection(this.firestore, 'blog_contents');
-    const q = query(c, orderBy('created_date', 'desc'));
+    const q = query(c,where("publish", "==", true), orderBy('created_date', 'desc'));
     const i = await getDocs(q);
     i.forEach(v => {
       this.items.push(v.data() as Item);
